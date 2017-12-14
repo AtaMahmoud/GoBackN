@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <HBox>
+        <Label text="Frames Number">
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </HBox.margin></Label>
+        <TextField fx:id="framesNumber">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin></TextField>
+    </HBox>
+    <HBox>
+        <Label text="Window Size">
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </HBox.margin></Label>
+        <TextField fx:id="windowSize">
+         <HBox.margin>
+            <Insets left="15.0" />
+         </HBox.margin>
+        </TextField>
+    </HBox>
+    <HBox>
+        <Label text="Time out(s)">
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </HBox.margin>
+      </Label>
+        <TextField fx:id="timeOut">
+         <HBox.margin>
+            <Insets left="22.0" />
+         </HBox.margin>
+      </TextField>
+    </HBox>
+    <HBox>
+        <Button fx:id="startButton" onAction="#start" prefHeight="25.0" prefWidth="67.0" text="Start">
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </HBox.margin></Button>
+        <Button fx:id="stopButton" onAction="#stop" prefHeight="25.0" prefWidth="70.0" text="Stop">
+         <HBox.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </HBox.margin></Button>
+      <VBox.margin>
+         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+      </VBox.margin>
+    </HBox>
+    <HBox prefWidth="1444.0" style="-fx-background-color: #ffffff;">
+        <ScrollPane maxHeight="1.7976931348623157E308" prefViewportHeight="400.0" prefViewportWidth="675.0">
+         <content>
+            <AnchorPane maxWidth="1.7976931348623157E308" prefHeight="413.0" prefWidth="688.0">
+               <children>
+                  <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simulation" textAlignment="CENTER" wrappingWidth="84.99998784065247" />
+                  <Text layoutX="30.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sender" />
+                   <Rectangle fx:id="rectangle" fill="#FFFFFF" layoutX="14.0" layoutY="67.0"  stroke="white" strokeWidth="5" />
+                  <HBox fx:id="packets" layoutX="14.0" layoutY="75.0" prefHeight="0.0" prefWidth="0.0" spacing="10.0" />
+                  <HBox fx:id="transimitedPackets" layoutX="14.0" layoutY="75.0" prefHeight="0.0" prefWidth="0.0" spacing="10.0" />
+                  <Text layoutX="23.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reciver" />
+                  <HBox fx:id="responseBuffer" layoutX="14.0" layoutY="340.0" prefHeight="0.0" prefWidth="0.0" spacing="10.0" />
+                  <HBox fx:id="reciverHBox" layoutX="14.0" layoutY="340.0" prefHeight="0.0" prefWidth="0.0" spacing="10.0" />
+               </children>
+            </AnchorPane>
+         </content>
+
+
+
+
+
+
+
+
+        </ScrollPane>
+        <ScrollPane minViewportWidth="675.0">
+            <BorderPane prefHeight="414.0" prefWidth="675.0">
+                <top>
+                    <VBox>
+                        <Text text="Time Line">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin></Text>
+                        <HBox fx:id="timeLine" />
+                    </VBox>
+                </top>
+            </BorderPane>
+        </ScrollPane>
+    </HBox>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+
+
+</VBox>
