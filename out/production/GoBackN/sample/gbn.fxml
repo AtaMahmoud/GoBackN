@@ -15,13 +15,13 @@
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
     <HBox>
-        <Label text="Frames Number">
+        <Label text="Bits Number">
          <HBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="12.0" top="10.0" />
          </HBox.margin></Label>
-        <TextField fx:id="framesNumber">
+        <TextField fx:id="numberOfBits">
          <HBox.margin>
-            <Insets />
+            <Insets left="15.0" />
          </HBox.margin></TextField>
     </HBox>
     <HBox>
@@ -67,7 +67,7 @@
                <children>
                   <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Simulation" textAlignment="CENTER" wrappingWidth="84.99998784065247" />
                   <Text layoutX="30.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sender" />
-                   <Rectangle fx:id="rectangle" fill="#FFFFFF" layoutX="14.0" layoutY="67.0"  stroke="white" strokeWidth="5" />
+                   <Rectangle fx:id="rectangle" fill="#FFFFFF" layoutX="14.0" layoutY="67.0" stroke="white" strokeWidth="3" />
                   <HBox fx:id="packets" layoutX="14.0" layoutY="75.0" prefHeight="0.0" prefWidth="0.0" spacing="10.0" />
                   <HBox fx:id="transimitedPackets" layoutX="14.0" layoutY="75.0" prefHeight="0.0" prefWidth="0.0" spacing="10.0" />
                   <Text layoutX="23.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reciver" />
@@ -76,13 +76,6 @@
                </children>
             </AnchorPane>
          </content>
-
-
-
-
-
-
-
 
         </ScrollPane>
         <ScrollPane minViewportWidth="675.0">
