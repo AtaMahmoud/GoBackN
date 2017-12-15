@@ -17,6 +17,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -59,8 +60,9 @@ public class Controller implements Initializable
     private HBox responseBuffer;
 
     TranslateTransition [] sentPackets;
-
-
+    final int base=2;
+    final int packetWidth=78;
+    ArrayList<Integer> killedPackets=new ArrayList<Integer>();
     @Override
     public void initialize(URL location, ResourceBundle resources)
     {
@@ -68,16 +70,19 @@ public class Controller implements Initializable
     }
     public void start(ActionEvent event)
     {
-        int base=2;
+
         framesNumber=Math.pow(base,Integer.valueOf(numberOfBits.getText()));
         windowWidth =Integer.valueOf(windowSize.getText());
-        packets.getChildren().addAll(createTransimitedPackets((int) framesNumber));
-        transimitedPackets.getChildren().addAll(createSenderAndReciverBuffer((int) framesNumber));
-        createWindowSize(78,windowWidth);
-        moveWindowSize(78,windowWidth);
-        reciverHBox.getChildren().addAll(createSenderAndReciverBuffer((int) framesNumber));
 
-        sentPackets[0].setOnFinished(new EventHandler<ActionEvent>() {
+        packets.getChildren().addAll(createSenderAndReciverBuffer((int) framesNumber));
+        transimitedPackets.getChildren().addAll(createTransimitedPackets(windowWidth));
+
+        createWindowSize(packetWidth,windowWidth);
+
+
+        reciverHBox.getChildren().addAll(createSenderAndReciverBuffer((int) framesNumber));
+        sentPackets[0].setOnFinished(new EventHandler<ActionEvent>()
+        {
             @Override
             public void handle(ActionEvent event) {
                 responseBuffer.getChildren().addAll(responseAck((int) framesNumber));
@@ -108,11 +113,13 @@ public class Controller implements Initializable
     }
     private Button[] createTransimitedPackets(int packetsNumber)
     {
+
         sentPackets = new TranslateTransition[packetsNumber];
         Button [] sentPackets = new Button[packetsNumber];
         Paint paint = Paint.valueOf("#083F87");
         for (int i=0;i<packetsNumber;i++)
         {
+
             final int x=i;
             sentPackets[i] = new Button("Frame "+i);
             sentPackets[i].setPrefWidth(70);
@@ -121,7 +128,7 @@ public class Controller implements Initializable
             sentPackets[i].setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    killPackets(sentPackets[x]);
+                    killPackets(sentPackets[x],x);
                 }
             });
             sentPackets[i].setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -134,14 +141,15 @@ public class Controller implements Initializable
             this.sentPackets[i].setCycleCount(1);
             this.sentPackets[i].setNode(sentPackets[i]);
             this.sentPackets[i].play();
-
         }
 
      return sentPackets;
     }
-    private void killPackets(Button btn)
+    private void killPackets(Button btn,int index)
     {
         btn.setVisible(false);
+        killedPackets.add(index);
+
     }
     private Button[] responseAck(int numberOfPackets)
     {
@@ -151,12 +159,15 @@ public class Controller implements Initializable
         for (int i=0;i<numberOfPackets;i++)
         {
 
+
             acks[i] = new Button("RR "+i);
             acks[i].setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
             acks[i].setStyle("-fx-text-fill: white");
             acks[i].setPrefWidth(60);
             acks[i].setMaxWidth(70);
             acks[i].setMinWidth(70);
+            if (killedPackets.contains(i))
+                acks[i].setVisible(false);
             ackMoving[i]=new TranslateTransition();
             ackMoving[i].setDuration(Duration.seconds(15));
             ackMoving[i].setToX(0);
@@ -165,7 +176,12 @@ public class Controller implements Initializable
             ackMoving[i].setCycleCount(1);
             ackMoving[i].setNode(acks[i]);
             ackMoving[i].play();
-
+            ackMoving[i].setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    moveWindowSize(packetWidth,windowWidth);
+                }
+            });
         }
 
         return acks ;
