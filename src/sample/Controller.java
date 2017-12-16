@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.animation.TranslateTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -17,8 +18,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class Controller implements Initializable
@@ -59,15 +59,47 @@ public class Controller implements Initializable
     @FXML
     private HBox responseBuffer;
 
-    TranslateTransition [] sendPackets;
-    Button [] sentPackets ;
+    /**
+     *
+     *
+     * Sender Fileds
+     *
+     *
+     * */
+    ArrayList<TranslateTransition> sendPackets;
+    ArrayList<Button> sentPackets ;
     Button [] sendBuffer;
+    int senderStartIndex;
+    int senderMaxIndex;
+
+    /**
+     *
+     * Reciver Fileds
+     *
+     * */
     Button [] reciveBuffer ;
-    TranslateTransition[] ackMoving;
-    Button [] acks ;
+
+    /**
+     * Acknowlage Fileds
+     * */
+    ArrayList<TranslateTransition> ackMoving;
+    ArrayList<Button> acks ;
+    int recervierStartIndex;
+    int reciverMaxIndex;
+    /**
+     *
+     * window Size Fileds
+     *
+     *
+     * */
     TranslateTransition windowSizeMove ;
     final int base=2;
     final int packetWidth=78;
+    /**
+     *
+     * Killed Packets
+     *
+     * */
     ArrayList<Integer> killedPackets=new ArrayList<Integer>();
     @Override
     public void initialize(URL location, ResourceBundle resources)
@@ -76,23 +108,26 @@ public class Controller implements Initializable
     }
     public void start(ActionEvent event)
     {
-
         init();
-
-
-
     }
+
     public void init()
     {
         framesNumber=Math.pow(base,Integer.valueOf(numberOfBits.getText()));
         windowWidth =Integer.valueOf(windowSize.getText());
-        sendPackets= new TranslateTransition[(int) framesNumber];
-        sentPackets = new Button[(int) framesNumber];
+        sendPackets= new ArrayList<TranslateTransition>();
+        sentPackets = new ArrayList<Button>();
         sendBuffer = new Button[(int)framesNumber];
         reciveBuffer = new Button[(int) framesNumber];
-        acks = new Button[(int) framesNumber];
-        ackMoving= new TranslateTransition[(int) framesNumber];
+        acks = new ArrayList<Button>();
+        ackMoving= new ArrayList<TranslateTransition>();
         windowSizeMove = new TranslateTransition();
+
+        senderStartIndex=0;
+        senderMaxIndex=windowWidth;
+
+        recervierStartIndex=0;
+        senderMaxIndex=windowWidth;
 
         packets.getChildren().addAll(createSendBuffer((int) framesNumber));
         createWindowSize(packetWidth,windowWidth);
@@ -100,13 +135,34 @@ public class Controller implements Initializable
 
 
         transimitedPackets.getChildren().addAll(createTransimitedPackets((int) framesNumber));
+
+        Timer timer = new Timer("MyTimer");
+        TimerTask timerTask=new TimerTask()
+        {
+            @Override
+            public void run()
+            {   Platform.runLater(new Runnable() {
+                @Override
+                public void run()
+                {
+
+                }
+            });
+            }
+        };
+        timer.scheduleAtFixedRate(timerTask, 5000, 5000);
     }
     public void stop(ActionEvent event)
     {
 
     }
 
-
+    /**
+     *
+     *
+     * Snder Methods
+     *
+     * */
     private Button[] createSendBuffer(int packetsNumber)
     {
 
@@ -123,6 +179,46 @@ public class Controller implements Initializable
 
         return sendBuffer;
     }
+    private List<Button> createTransimitedPackets(int start,int max)
+    {
+        Paint paint = Paint.valueOf("#083F87");
+        for (int i=start;i<max;i++)
+        {
+            final int x=i;
+            sentPackets.add(new Button("Frame "+i));
+            sentPackets.get(i).setPrefWidth(70);
+            sentPackets.get(i).setMaxWidth(70);
+            sentPackets.get(i).setMinWidth(70);
+            sentPackets.get(i).setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event)
+                {
+                    killPackets(sentPackets.get(x),x);
+                }
+            });
+            sentPackets.get(i).setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
+            sentPackets.get(i).setStyle("-fx-text-fill: white");
+            this.sendPackets.add(new TranslateTransition());
+            this.sendPackets.get(i).setDuration(Duration.seconds(5));
+            this.sendPackets.get(i).setToX(0);
+            this.sendPackets.get(i).setToY(265);
+            this.sendPackets.get(i).setAutoReverse(true);
+            this.sendPackets.get(i).setCycleCount(1);
+            this.sendPackets.get(i).setNode(sentPackets.get(i));
+            this.sendPackets.get(i).play();
+            sendPackets.get(i).setOnFinished(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event)
+                {
+                    responseBuffer.getChildren().addAll(responseAck((int) framesNumber));
+                }
+            });
+
+        }
+
+        return sentPackets.subList(senderStartIndex,senderMaxIndex);
+    }
+
     private Button[] createReciverBuffer(int packetsNumber)
     {
 
@@ -138,75 +234,38 @@ public class Controller implements Initializable
 
         return reciveBuffer;
     }
-    private Button[] createTransimitedPackets(int packetsNumber)
-    {
-        Paint paint = Paint.valueOf("#083F87");
-        for (int i=0;i<packetsNumber;i++)
-        {
-            final int x=i;
-            sentPackets[i] = new Button("Frame "+i);
-            sentPackets[i].setPrefWidth(70);
-            sentPackets[i].setMaxWidth(70);
-            sentPackets[i].setMinWidth(70);
-            sentPackets[i].setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    killPackets(sentPackets[x],x);
-                }
-            });
-            sentPackets[i].setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
-            sentPackets[i].setStyle("-fx-text-fill: white");
-            this.sendPackets[i]=new TranslateTransition();
-            this.sendPackets[i].setDuration(Duration.seconds(5));
-            this.sendPackets[i].setToX(0);
-            this.sendPackets[i].setToY(265);
-            this.sendPackets[i].setAutoReverse(true);
-            this.sendPackets[i].setCycleCount(1);
-            this.sendPackets[i].setNode(sentPackets[i]);
-            this.sendPackets[i].play();
-            sendPackets[i].setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event)
-                {
-                    responseBuffer.getChildren().addAll(responseAck((int) framesNumber));
-                }
-            });
 
-        }
-
-     return sentPackets;
-    }
     private void killPackets(Button btn,int index)
     {
         btn.setVisible(false);
         killedPackets.add(index);
 
     }
-    private Button[] responseAck(int numberOfPackets)
+    private List<Button> responseAck(int numberOfPackets)
     {
 
         Paint paint = Paint.valueOf("#329932");
         for (int i=0;i<numberOfPackets;i++)
         {
-            acks[i] = new Button("RR "+i);
-            acks[i].setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
-            acks[i].setStyle("-fx-text-fill: white");
-            acks[i].setPrefWidth(60);
-            acks[i].setMaxWidth(70);
-            acks[i].setMinWidth(70);
+            acks.add(new Button("RR "+i)) ;
+            acks.get(i).setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
+            acks.get(i).setStyle("-fx-text-fill: white");
+            acks.get(i).setPrefWidth(60);
+            acks.get(i).setMaxWidth(70);
+            acks.get(i).setMinWidth(70);
 
             if (killedPackets.contains(i))
-                acks[i].setVisible(false);
+                acks.get(i).setVisible(false);
 
-            ackMoving[i]=new TranslateTransition();
-            ackMoving[i].setDuration(Duration.seconds(5));
-            ackMoving[i].setToX(0);
-            ackMoving[i].setToY(-265);
-            ackMoving[i].setAutoReverse(true);
-            ackMoving[i].setCycleCount(1);
-            ackMoving[i].setNode(acks[i]);
-            ackMoving[i].play();
-            ackMoving[i].setOnFinished(new EventHandler<ActionEvent>() {
+            ackMoving.add(new TranslateTransition());
+            ackMoving.get(i).setDuration(Duration.seconds(5));
+            ackMoving.get(i).setToX(0);
+            ackMoving.get(i).setToY(-265);
+            ackMoving.get(i).setAutoReverse(true);
+            ackMoving.get(i).setCycleCount(1);
+            ackMoving.get(i).setNode(acks.get(i));
+            ackMoving.get(i).play();
+            ackMoving.get(i).setOnFinished(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
                     moveWindowSize(packetWidth,windowWidth);
