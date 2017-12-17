@@ -71,6 +71,8 @@ public class Controller implements Initializable
     Button [] sendBuffer;
     int senderStartIndex;
     int senderMaxIndex;
+    boolean isFirstCall=false;
+    int timeout;
 
     /**
      *
@@ -83,6 +85,7 @@ public class Controller implements Initializable
      * Acknowlage Fileds
      * */
     ArrayList<TranslateTransition> ackMoving;
+    ArrayList<Integer>killedAcks=new ArrayList<Integer>();
     ArrayList<Button> acks ;
     int recervierStartIndex;
     int reciverMaxIndex;
@@ -94,7 +97,8 @@ public class Controller implements Initializable
      * */
     TranslateTransition windowSizeMove ;
     final int base=2;
-    final int packetWidth=78;
+    final int packetWidth=85;
+    int windowSizerMover=1;
     /**
      *
      * Killed Packets
@@ -113,6 +117,7 @@ public class Controller implements Initializable
 
     public void init()
     {
+        //Variable Intialization
         framesNumber=Math.pow(base,Integer.valueOf(numberOfBits.getText()));
         windowWidth =Integer.valueOf(windowSize.getText());
         sendPackets= new ArrayList<TranslateTransition>();
@@ -122,21 +127,83 @@ public class Controller implements Initializable
         acks = new ArrayList<Button>();
         ackMoving= new ArrayList<TranslateTransition>();
         windowSizeMove = new TranslateTransition();
-
         senderStartIndex=0;
         senderMaxIndex=windowWidth;
 
         recervierStartIndex=0;
-        senderMaxIndex=windowWidth;
+        reciverMaxIndex=windowWidth;
+
+
+
+
+
+        /*TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        System.out.print("Thread Start");
+                        ArrayList<Button>buttons=responseAck(recervierStartIndex,reciverMaxIndex);
+                        for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
+                        {
+                            responseBuffer.getChildren().add(buttons.get(i));
+                            recervierStartIndex++;
+                        }
+                        reciverMaxIndex+=windowWidth;
+                    }
+                });
+
+            }
+        };
+
+        Timer timer = new Timer();
+        long delay = 0;
+        long intevalPeriod = 5 * 1000;
+        // schedules the task to be run in an interval
+        timer.scheduleAtFixedRate(task, delay,intevalPeriod);*/
+
+        long de = 0;
+        long peroid = 20 * 1000;
+        TimerTask anotherTask = new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        System.out.print("Thread Start");
+                        ArrayList<Button>buttons=startSender(senderStartIndex,senderMaxIndex);
+
+                        for (int i=senderStartIndex;i<senderMaxIndex;i++)
+                        {
+                            transimitedPackets.getChildren().add(buttons.get(i));
+                            senderStartIndex++;
+                           
+                        }
+                        senderMaxIndex+=windowWidth;
+                    }
+                });
+            }
+        };
+
+        Timer anotherTimer = new Timer();
+
+
+
+
+        // schedules the task to be run in an interval
+
+        anotherTimer.scheduleAtFixedRate(anotherTask, de,peroid);
+
 
         packets.getChildren().addAll(createSendBuffer((int) framesNumber));
         createWindowSize(packetWidth,windowWidth);
         reciverHBox.getChildren().addAll(createReciverBuffer((int) framesNumber));
 
 
-        transimitedPackets.getChildren().addAll(createTransimitedPackets((int) framesNumber));
-
-        Timer timer = new Timer("MyTimer");
+      /* Timer timer = new Timer("MyTimer");
         TimerTask timerTask=new TimerTask()
         {
             @Override
@@ -145,12 +212,18 @@ public class Controller implements Initializable
                 @Override
                 public void run()
                 {
+                    ArrayList<Button>buttons=responseAck(recervierStartIndex,reciverMaxIndex);
 
+                    for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
+                        responseBuffer.getChildren().add(buttons.get(i));
+
+                    recervierStartIndex+=windowWidth;
+                    reciverMaxIndex+=windowWidth;
                 }
             });
             }
         };
-        timer.scheduleAtFixedRate(timerTask, 5000, 5000);
+        timer.scheduleAtFixedRate(timerTask, 5000, 5000);*/
     }
     public void stop(ActionEvent event)
     {
@@ -179,8 +252,9 @@ public class Controller implements Initializable
 
         return sendBuffer;
     }
-    private List<Button> createTransimitedPackets(int start,int max)
+    private ArrayList<Button> startSender(int start, int max)
     {
+        double delay=1;
         Paint paint = Paint.valueOf("#083F87");
         for (int i=start;i<max;i++)
         {
@@ -205,18 +279,30 @@ public class Controller implements Initializable
             this.sendPackets.get(i).setAutoReverse(true);
             this.sendPackets.get(i).setCycleCount(1);
             this.sendPackets.get(i).setNode(sentPackets.get(i));
+            sendPackets.get(i).setDelay(new Duration(delay*1000));
+            delay+=.25;
             this.sendPackets.get(i).play();
+
+
             sendPackets.get(i).setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event)
-                {
-                    responseBuffer.getChildren().addAll(responseAck((int) framesNumber));
-                }
-            });
+                    @Override
+                    public void handle(ActionEvent event)
+                    {
+
+                        ArrayList<Button>buttons=responseAck(recervierStartIndex,reciverMaxIndex);
+
+                        for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
+                            responseBuffer.getChildren().add(buttons.get(i));
+
+                        recervierStartIndex+=windowWidth;
+                        reciverMaxIndex+=windowWidth;
+
+                    }
+                });
 
         }
 
-        return sentPackets.subList(senderStartIndex,senderMaxIndex);
+        return sentPackets;
     }
 
     private Button[] createReciverBuffer(int packetsNumber)
@@ -241,19 +327,32 @@ public class Controller implements Initializable
         killedPackets.add(index);
 
     }
-    private List<Button> responseAck(int numberOfPackets)
+    private void killAcks(Button btn,int index)
     {
+        btn.setVisible(false);
+        killedAcks.add(index);
 
+    }
+    private ArrayList<Button> responseAck(int start,int max)
+    {
+        double delay=1;
         Paint paint = Paint.valueOf("#329932");
-        for (int i=0;i<numberOfPackets;i++)
+        for (int i=start;i<max;i++)
         {
+            final int x=i;
             acks.add(new Button("RR "+i)) ;
             acks.get(i).setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
             acks.get(i).setStyle("-fx-text-fill: white");
             acks.get(i).setPrefWidth(60);
             acks.get(i).setMaxWidth(70);
             acks.get(i).setMinWidth(70);
+            acks.get(i).setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
 
+                    killAcks(acks.get(x),x);
+                }
+            });
             if (killedPackets.contains(i))
                 acks.get(i).setVisible(false);
 
@@ -265,15 +364,27 @@ public class Controller implements Initializable
             ackMoving.get(i).setCycleCount(1);
             ackMoving.get(i).setNode(acks.get(i));
             ackMoving.get(i).play();
+            ackMoving.get(i).setDelay(new Duration(delay*1000));
+            delay+=.25;
             ackMoving.get(i).setOnFinished(new EventHandler<ActionEvent>() {
                 @Override
-                public void handle(ActionEvent event) {
-                    moveWindowSize(packetWidth,windowWidth);
+                public void handle(ActionEvent event)
+                {
+                    if (killedPackets.contains(x))
+                    {
+                        return;
+                    }
+                    else
+                        {
+                        moveWindowSize(packetWidth, windowSizerMover);
+                        windowSizerMover+=windowWidth;
+                    }
                 }
             });
+
         }
 
-        return acks ;
+        return acks;
     }
     private void createWindowSize(int frameWidth, int window)
     {
@@ -295,13 +406,23 @@ public class Controller implements Initializable
         windowSizeMove.setNode(rectangle);
         windowSizeMove.play();
 
-        windowSizeMove.setOnFinished(new EventHandler<ActionEvent>() {
+     /*   windowSizeMove.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event)
             {
-                transimitedPackets.getChildren().addAll(createTransimitedPackets((int) framesNumber));
+                ArrayList<Button>buttons=startSender(senderStartIndex,senderMaxIndex);
+
+                for (int i=senderStartIndex;i<senderMaxIndex;i++)
+                {
+                    transimitedPackets.getChildren().add(buttons.get(i));
+                    senderStartIndex++;
+                }
+
+
+                senderMaxIndex+=windowWidth;
+
             }
-        });
+        });*/
     }
 
 }
