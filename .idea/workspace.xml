@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/out/production/GoBackN/sample/Controller$3.class" afterPath="$PROJECT_DIR$/out/production/GoBackN/sample/Controller$3.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/GoBackN/sample/Controller$4.class" afterPath="$PROJECT_DIR$/out/production/GoBackN/sample/Controller$4.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/GoBackN/sample/Controller$5.class" afterPath="$PROJECT_DIR$/out/production/GoBackN/sample/Controller$5.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/GoBackN/sample/Controller$6.class" afterPath="$PROJECT_DIR$/out/production/GoBackN/sample/Controller$6.class" />
       <change beforePath="$PROJECT_DIR$/out/production/GoBackN/sample/Controller.class" afterPath="$PROJECT_DIR$/out/production/GoBackN/sample/Controller.class" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" afterPath="$PROJECT_DIR$/src/sample/Controller.java" />
     </list>
@@ -64,7 +69,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="176">
               <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -76,25 +81,30 @@
       <file leaf-file-name="Controller.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="192" column="23" lean-forward="true" selection-start-line="192" selection-start-column="23" selection-end-line="192" selection-end-column="23" />
+            <state relative-caret-position="99">
+              <caret line="380" column="33" lean-forward="false" selection-start-line="380" selection-start-column="33" selection-end-line="380" selection-end-column="33" />
               <folding>
+                <element signature="e#1744#1753#0" expanded="true" />
+                <element signature="e#2153#2162#0" expanded="true" />
                 <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-                <element signature="e#2303#2304#0" expanded="true" />
-                <element signature="e#2325#2326#0" expanded="true" />
-                <element signature="e#3309#4051#0" expanded="true" />
-                <element signature="e#4050#4051#0" expanded="true" />
+                <element signature="e#2305#2306#0" expanded="true" />
+                <element signature="e#2327#2328#0" expanded="true" />
+                <element signature="e#3310#4052#0" expanded="true" />
+                <element signature="e#4051#4052#0" expanded="true" />
+                <element signature="e#4218#5043#0" expanded="true" />
                 <element signature="method#run#0;class#4340:5008" expanded="false" />
+                <element signature="e#5042#5043#0" expanded="true" />
                 <element signature="method#stop#0;class#Controller#0" expanded="false" />
                 <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
                 <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-                <element signature="e#6496#6497#0" expanded="true" />
-                <element signature="e#6569#6570#0" expanded="true" />
+                <element signature="e#6477#6478#0" expanded="true" />
+                <element signature="e#6550#6551#0" expanded="true" />
                 <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
                 <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
                 <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
                 <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-                <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+                <element signature="e#10967#10968#0" expanded="true" />
+                <element signature="e#11015#11016#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -385,12 +395,13 @@
       <workItem from="1513444837169" duration="7151000" />
       <workItem from="1513503332766" duration="77000" />
       <workItem from="1513507583719" duration="1292000" />
-      <workItem from="1513521103779" duration="14688000" />
+      <workItem from="1513521103779" duration="15181000" />
+      <workItem from="1513544628859" duration="2246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71985000" />
+    <option name="totallyTimeSpent" value="74724000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -402,17 +413,16 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UML Diagrams" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32463294" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32463294" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17397882" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32626426" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Graphical Navigator" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -430,6 +440,7 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32626426" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,25 +476,70 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3432">
-          <caret line="156" column="10" lean-forward="true" selection-start-line="156" selection-start-column="10" selection-end-line="156" selection-end-column="10" />
+        <state relative-caret-position="3322">
+          <caret line="172" column="19" lean-forward="false" selection-start-line="172" selection-start-column="19" selection-end-line="172" selection-end-column="19" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3432">
+          <caret line="156" column="10" lean-forward="true" selection-start-line="156" selection-start-column="10" selection-end-line="156" selection-end-column="10" />
+          <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
+            <element signature="method#initialize#0;class#Controller#0" expanded="false" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
+            <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
+            <element signature="method#stop#0;class#Controller#0" expanded="false" />
+            <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
+            <element signature="method#startSender#0;class#Controller#0" expanded="false" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
+            <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
+            <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
+            <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
+            <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -503,22 +559,27 @@
         <state relative-caret-position="2904">
           <caret line="132" column="30" lean-forward="false" selection-start-line="132" selection-start-column="30" selection-end-line="132" selection-end-column="30" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -538,22 +599,27 @@
         <state relative-caret-position="2530">
           <caret line="115" column="0" lean-forward="false" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -573,22 +639,27 @@
         <state relative-caret-position="3036">
           <caret line="144" column="9" lean-forward="false" selection-start-line="144" selection-start-column="9" selection-end-line="144" selection-end-column="9" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -608,22 +679,27 @@
         <state relative-caret-position="3982">
           <caret line="181" column="60" lean-forward="false" selection-start-line="181" selection-start-column="60" selection-end-line="181" selection-end-column="60" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -643,22 +719,27 @@
         <state relative-caret-position="1738">
           <caret line="79" column="98" lean-forward="false" selection-start-line="79" selection-start-column="98" selection-end-line="79" selection-end-column="98" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -707,22 +788,27 @@
         <state relative-caret-position="1738">
           <caret line="79" column="0" lean-forward="false" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -753,22 +839,27 @@
         <state relative-caret-position="1628">
           <caret line="74" column="69" lean-forward="false" selection-start-line="74" selection-start-column="69" selection-end-line="74" selection-end-column="69" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -799,22 +890,27 @@
         <state relative-caret-position="2464">
           <caret line="134" column="0" lean-forward="true" selection-start-line="134" selection-start-column="0" selection-end-line="134" selection-end-column="0" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -845,22 +941,27 @@
         <state relative-caret-position="2332">
           <caret line="125" column="24" lean-forward="true" selection-start-line="125" selection-start-column="24" selection-end-line="125" selection-end-column="24" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -891,22 +992,27 @@
         <state relative-caret-position="1210">
           <caret line="67" column="58" lean-forward="false" selection-start-line="67" selection-start-column="58" selection-end-line="67" selection-end-column="58" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -926,22 +1032,27 @@
         <state relative-caret-position="1364">
           <caret line="62" column="0" lean-forward="false" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -983,22 +1094,27 @@
         <state relative-caret-position="88">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1068,7 +1184,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="176">
           <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1089,31 +1205,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="1781" column="0" lean-forward="false" selection-start-line="1781" selection-start-column="0" selection-end-line="1781" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="192" column="23" lean-forward="true" selection-start-line="192" selection-start-column="23" selection-end-line="192" selection-end-column="23" />
+        <state relative-caret-position="99">
+          <caret line="380" column="33" lean-forward="false" selection-start-line="380" selection-start-column="33" selection-end-line="380" selection-end-column="33" />
           <folding>
+            <element signature="e#1744#1753#0" expanded="true" />
+            <element signature="e#2153#2162#0" expanded="true" />
             <element signature="method#initialize#0;class#Controller#0" expanded="false" />
-            <element signature="e#2303#2304#0" expanded="true" />
-            <element signature="e#2325#2326#0" expanded="true" />
-            <element signature="e#3309#4051#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
+            <element signature="e#2305#2306#0" expanded="true" />
+            <element signature="e#2327#2328#0" expanded="true" />
+            <element signature="e#3310#4052#0" expanded="true" />
+            <element signature="e#4051#4052#0" expanded="true" />
+            <element signature="e#4218#5043#0" expanded="true" />
             <element signature="method#run#0;class#4340:5008" expanded="false" />
+            <element signature="e#5042#5043#0" expanded="true" />
             <element signature="method#stop#0;class#Controller#0" expanded="false" />
             <element signature="method#createSendBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#startSender#0;class#Controller#0" expanded="false" />
-            <element signature="e#6496#6497#0" expanded="true" />
-            <element signature="e#6569#6570#0" expanded="true" />
+            <element signature="e#6477#6478#0" expanded="true" />
+            <element signature="e#6550#6551#0" expanded="true" />
             <element signature="method#createReciverBuffer#0;class#Controller#0" expanded="false" />
             <element signature="method#killPackets#0;class#Controller#0" expanded="false" />
             <element signature="method#killAcks#0;class#Controller#0" expanded="false" />
             <element signature="method#createWindowSize#0;class#Controller#0" expanded="false" />
-            <element signature="method#moveWindowSize#0;class#Controller#0" expanded="false" />
+            <element signature="e#10967#10968#0" expanded="true" />
+            <element signature="e#11015#11016#0" expanded="true" />
           </folding>
         </state>
       </provider>

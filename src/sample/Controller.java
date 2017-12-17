@@ -68,7 +68,7 @@ public class Controller implements Initializable
      * */
     ArrayList<TranslateTransition> sendPackets;
     ArrayList<Button> sentPackets ;
-    TimerTask anotherTask;
+    TimerTask senderTask;
     Button [] sendBuffer;
     int senderStartIndex;
     int senderMaxIndex;
@@ -90,7 +90,7 @@ public class Controller implements Initializable
     ArrayList<Button> acks ;
     int recervierStartIndex;
     int reciverMaxIndex;
-    TimerTask task;
+    TimerTask ackTask;
     /**
      *
      * window Size Fileds
@@ -141,7 +141,7 @@ public class Controller implements Initializable
 
         long de = 0;
         long peroid = 6 * 1000;
-        anotherTask = new TimerTask() {
+        senderTask = new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(new Runnable() {
@@ -164,13 +164,13 @@ public class Controller implements Initializable
         };
 
         /*Timer anotherTimer = new Timer();
-        anotherTimer.scheduleAtFixedRate(anotherTask, de,peroid);*/
-       // anotherTask.run();
+        anotherTimer.scheduleAtFixedRate(senderTask, de,peroid);*/
+        senderTask.run();
 
 
 
 
-            task = new TimerTask() {
+            ackTask = new TimerTask() {
                 @Override
                 public void run() {
                     Platform.runLater(new Runnable() {
@@ -190,12 +190,13 @@ public class Controller implements Initializable
 
                 }
             };
-            task.run();
+
            /* Timer timer = new Timer();
             long delay = 0;
             long intevalPeriod = 6 * 1000;
-            timer.scheduleAtFixedRate(task, delay,intevalPeriod);*/
+            timer.scheduleAtFixedRate(ackTask, delay,intevalPeriod);*/
             flag=false;
+
 
 
 
@@ -265,7 +266,7 @@ public class Controller implements Initializable
                     @Override
                     public void handle(ActionEvent event)
                     {//Start here
-                        task.run();
+                        ackTask.run();
 
                     }
                 });
@@ -341,15 +342,11 @@ public class Controller implements Initializable
                 @Override
                 public void handle(ActionEvent event)
                 {
-                    if (killedPackets.contains(x))
-                    {
-                        return;
-                    }
-                    else
-                        {
+
                         moveWindowSize(packetWidth, windowSizerMover);
                         windowSizerMover+=windowWidth;
-                    }
+
+
                 }
             });
 
@@ -377,23 +374,13 @@ public class Controller implements Initializable
         windowSizeMove.setNode(rectangle);
         windowSizeMove.play();
 
-     /*   windowSizeMove.setOnFinished(new EventHandler<ActionEvent>() {
+       windowSizeMove.setOnFinished(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event)
             {
-                ArrayList<Button>buttons=startSender(senderStartIndex,senderMaxIndex);
-
-                for (int i=senderStartIndex;i<senderMaxIndex;i++)
-                {
-                    transimitedPackets.getChildren().add(buttons.get(i));
-                    senderStartIndex++;
-                }
-
-
-                senderMaxIndex+=windowWidth;
-
+                senderTask.run();
             }
-        });*/
+        });
     }
 
 }
