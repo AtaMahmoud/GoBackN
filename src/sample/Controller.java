@@ -68,10 +68,11 @@ public class Controller implements Initializable
      * */
     ArrayList<TranslateTransition> sendPackets;
     ArrayList<Button> sentPackets ;
+    TimerTask anotherTask;
     Button [] sendBuffer;
     int senderStartIndex;
     int senderMaxIndex;
-    boolean isFirstCall=false;
+    boolean flag=false;
     int timeout;
 
     /**
@@ -89,6 +90,7 @@ public class Controller implements Initializable
     ArrayList<Button> acks ;
     int recervierStartIndex;
     int reciverMaxIndex;
+    TimerTask task;
     /**
      *
      * window Size Fileds
@@ -133,40 +135,13 @@ public class Controller implements Initializable
         recervierStartIndex=0;
         reciverMaxIndex=windowWidth;
 
-
-
-
-
-        /*TimerTask task = new TimerTask() {
-            @Override
-            public void run() {
-                Platform.runLater(new Runnable() {
-                    @Override
-                    public void run()
-                    {
-                        System.out.print("Thread Start");
-                        ArrayList<Button>buttons=responseAck(recervierStartIndex,reciverMaxIndex);
-                        for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
-                        {
-                            responseBuffer.getChildren().add(buttons.get(i));
-                            recervierStartIndex++;
-                        }
-                        reciverMaxIndex+=windowWidth;
-                    }
-                });
-
-            }
-        };
-
-        Timer timer = new Timer();
-        long delay = 0;
-        long intevalPeriod = 5 * 1000;
-        // schedules the task to be run in an interval
-        timer.scheduleAtFixedRate(task, delay,intevalPeriod);*/
+        packets.getChildren().addAll(createSendBuffer((int) framesNumber));
+        createWindowSize(packetWidth,windowWidth);
+        reciverHBox.getChildren().addAll(createReciverBuffer((int) framesNumber));
 
         long de = 0;
-        long peroid = 20 * 1000;
-        TimerTask anotherTask = new TimerTask() {
+        long peroid = 6 * 1000;
+        anotherTask = new TimerTask() {
             @Override
             public void run() {
                 Platform.runLater(new Runnable() {
@@ -180,7 +155,7 @@ public class Controller implements Initializable
                         {
                             transimitedPackets.getChildren().add(buttons.get(i));
                             senderStartIndex++;
-                           
+
                         }
                         senderMaxIndex+=windowWidth;
                     }
@@ -188,42 +163,42 @@ public class Controller implements Initializable
             }
         };
 
-        Timer anotherTimer = new Timer();
+        /*Timer anotherTimer = new Timer();
+        anotherTimer.scheduleAtFixedRate(anotherTask, de,peroid);*/
+       // anotherTask.run();
 
 
 
 
-        // schedules the task to be run in an interval
-
-        anotherTimer.scheduleAtFixedRate(anotherTask, de,peroid);
-
-
-        packets.getChildren().addAll(createSendBuffer((int) framesNumber));
-        createWindowSize(packetWidth,windowWidth);
-        reciverHBox.getChildren().addAll(createReciverBuffer((int) framesNumber));
-
-
-      /* Timer timer = new Timer("MyTimer");
-        TimerTask timerTask=new TimerTask()
-        {
-            @Override
-            public void run()
-            {   Platform.runLater(new Runnable() {
+            task = new TimerTask() {
                 @Override
-                public void run()
-                {
-                    ArrayList<Button>buttons=responseAck(recervierStartIndex,reciverMaxIndex);
+                public void run() {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run()
+                        {
+                            System.out.print("ACK Thread Start");
+                            ArrayList<Button>buttons=responseAck(recervierStartIndex,reciverMaxIndex);
+                            for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
+                            {
+                                responseBuffer.getChildren().add(buttons.get(i));
+                                recervierStartIndex++;
+                            }
+                            reciverMaxIndex+=windowWidth;
+                        }
+                    });
 
-                    for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
-                        responseBuffer.getChildren().add(buttons.get(i));
-
-                    recervierStartIndex+=windowWidth;
-                    reciverMaxIndex+=windowWidth;
                 }
-            });
-            }
-        };
-        timer.scheduleAtFixedRate(timerTask, 5000, 5000);*/
+            };
+            task.run();
+           /* Timer timer = new Timer();
+            long delay = 0;
+            long intevalPeriod = 6 * 1000;
+            timer.scheduleAtFixedRate(task, delay,intevalPeriod);*/
+            flag=false;
+
+
+
     }
     public void stop(ActionEvent event)
     {
@@ -283,22 +258,18 @@ public class Controller implements Initializable
             delay+=.25;
             this.sendPackets.get(i).play();
 
+            if (i==max-1){
+
 
             sendPackets.get(i).setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event)
-                    {
-
-                        ArrayList<Button>buttons=responseAck(recervierStartIndex,reciverMaxIndex);
-
-                        for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
-                            responseBuffer.getChildren().add(buttons.get(i));
-
-                        recervierStartIndex+=windowWidth;
-                        reciverMaxIndex+=windowWidth;
+                    {//Start here
+                        task.run();
 
                     }
                 });
+            }
 
         }
 
@@ -365,7 +336,7 @@ public class Controller implements Initializable
             ackMoving.get(i).setNode(acks.get(i));
             ackMoving.get(i).play();
             ackMoving.get(i).setDelay(new Duration(delay*1000));
-            delay+=.25;
+            delay+=0.25;
             ackMoving.get(i).setOnFinished(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event)
