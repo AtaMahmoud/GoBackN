@@ -162,7 +162,7 @@ public class Controller implements Initializable
 
                             @Override
                             public void handle(ActionEvent event)
-                            {//Start here
+                            {
                                 System.out.println("Inside On Finish");
 
                                 if(killedPackets.size()==windowWidth)
@@ -175,13 +175,44 @@ public class Controller implements Initializable
                                         System.out.println("inside for");
                                         sentPackets.get(j).setTranslateY(0);
                                         sendPackets.get(j).getNode().setVisible(true);
-                                        // sendPackets.get(j).play();
-
                                     }
                                     killedPackets.clear();
                                     senderTask.run();
 
 
+
+                                }
+                                else if(killedPackets.size()>0&&killedPackets.size()<windowWidth)
+                                {
+
+                                    System.out.println("inside  else if");
+                                    //ackTask.run();
+                                    if (killedPackets.get(killedPackets.indexOf(Collections.min(killedPackets)))==0)
+                                    {
+                                        senderStartIndex=killedPackets.get(killedPackets.indexOf(Collections.min(killedPackets)));
+                                        senderMaxIndex=windowWidth;
+                                        for (int j=senderStartIndex;j<senderMaxIndex;j++)
+                                        {
+                                            System.out.println("inside for");
+                                            sentPackets.get(j).setTranslateY(0);
+                                            sendPackets.get(j).getNode().setVisible(true);
+                                        }
+                                        killedPackets.clear();
+                                        senderTask.run();
+                                    }
+                                    else
+                                    {
+                                        senderStartIndex=killedPackets.get(killedPackets.indexOf(Collections.min(killedPackets)));
+                                        senderMaxIndex = senderStartIndex+windowWidth;
+                                        for (int j=senderStartIndex;j<senderMaxIndex;j++)
+                                        {
+                                            System.out.println("inside for");
+                                            sentPackets.get(j).setTranslateY(0);
+                                            sendPackets.get(j).getNode().setVisible(true);
+                                        }
+                                        killedPackets.clear();
+                                        senderTask.run();
+                                    }
 
                                 }
                                 else
@@ -190,13 +221,13 @@ public class Controller implements Initializable
                                 }
 
 
-
                             }
+
 
                         });
 
-                        senderMaxIndex+=windowWidth;
-                        senderStartIndex+=windowWidth;
+                       /* senderMaxIndex+=windowWidth;
+                        senderStartIndex+=windowWidth;*/
                     }
                 });
             }
@@ -301,55 +332,7 @@ public class Controller implements Initializable
             sendPackets.get(i).setDelay(new Duration(delay*1000));
             delay+=.25;
 
-
-            System.out.println("From Sender Thread onFinish Index = "+ "onFinishInedex");
-            if (i==onFinishIndex)
-            {
-               /* sendPackets.get(i).setOnFinished(new EventHandler<ActionEvent>()
-                {
-
-                    @Override
-                    public void handle(ActionEvent event)
-                    {//Start here
-                        System.out.println("Inside On Finish");
-                        ackTask.run();
-                        if(killedPackets.size()==windowWidth)
-                        {
-                            System.out.println("inside if");
-                            senderMaxIndex-=windowWidth;
-                            senderStartIndex-=windowWidth;
-                            for (int j=senderStartIndex;j<senderMaxIndex;j++)
-                            {
-                                System.out.println("inside for");
-                                sentPackets.get(j).setTranslateY(0);
-                                sendPackets.get(j).getNode().setVisible(true);
-
-                            }
-
-                            senderTask.run();
-                            killedPackets.clear();
-
-                        }
-                        else
-                        {
-                            //ackTask.run();
-                        }
-
-
-
-                    }
-
-                });*/
             }
-
-
-
-
-        }
-
-
-        //i = 3
-
 
         return sentPackets;
     }
@@ -415,18 +398,17 @@ public class Controller implements Initializable
             ackMoving.get(i).setDelay(new Duration(delay*1000));
             delay+=0.25;
             ackMoving.get(i).play();
-            ackMoving.get(i).setOnFinished(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event)
-                {
-
-                    moveWindowSize(packetWidth, windowSizerMover);
-                    windowSizerMover+=windowWidth;
-
-
-                }
-            });
-
+            if (i==max-1)
+            {
+                ackMoving.get(i).setOnFinished(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event)
+                    {
+                        moveWindowSize(packetWidth, windowSizerMover);
+                        windowSizerMover += windowWidth;
+                    }
+                });
+            }
         }
 
         return acks;
@@ -455,7 +437,8 @@ public class Controller implements Initializable
             @Override
             public void handle(ActionEvent event)
             {
-
+                senderMaxIndex+=windowWidth;
+                senderStartIndex+=windowWidth;
                 senderTask.run();
             }
         });
