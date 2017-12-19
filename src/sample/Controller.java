@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.*;
 
 
-public class Controller implements Initializable
+public class Controller
 {
     @FXML
     private TextField numberOfBits;
@@ -106,11 +106,6 @@ public class Controller implements Initializable
      *
      * */
     ArrayList<Integer> killedPackets=new ArrayList<Integer>();
-    @Override
-    public void initialize(URL location, ResourceBundle resources)
-    {
-
-    }
     public void start(ActionEvent event)
     {
         VarIntialization();
@@ -250,18 +245,28 @@ public class Controller implements Initializable
         ackTask = new TimerTask() {
             @Override
             public void run() {
-                Platform.runLater(new Runnable() {
+                Platform.runLater(new Runnable()
+                {
                     @Override
                     public void run()
                     {
                         System.out.println("ACK Thread Start ");
                         for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
                         {
-
-                            recervierStartIndex++;
-
+                            ackMoving.get(i).play();
                         }
-                        reciverMaxIndex+=windowWidth;
+                        ackMoving.get(reciverMaxIndex-1).setOnFinished(new EventHandler<ActionEvent>()
+                        {
+                            @Override
+                            public void handle(ActionEvent event)
+                            {
+                                //windows SIze moving
+                                moveWindowSize(packetWidth, windowSizerMover);
+                                windowSizerMover += windowWidth;
+                            }
+                        });
+
+
                     }
                 });
 
@@ -402,17 +407,6 @@ public class Controller implements Initializable
             ackMoving.get(i).setNode(acks.get(i));
             ackMoving.get(i).setDelay(new Duration(delay*1000));
             delay+=0.25;
-            ackMoving.get(i).play();
-
-                ackMoving.get(i).setOnFinished(new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(ActionEvent event)
-                    {
-                        moveWindowSize(packetWidth, windowSizerMover);
-                        windowSizerMover += windowWidth;
-                    }
-                });
-
         }
 
         return acks;
@@ -443,6 +437,8 @@ public class Controller implements Initializable
             {
                 senderMaxIndex+=windowWidth;
                 senderStartIndex+=windowWidth;
+                reciverMaxIndex+=windowWidth;
+                recervierStartIndex+=windowWidth;
                 senderTask.run();
             }
         });
