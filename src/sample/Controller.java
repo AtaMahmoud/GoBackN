@@ -101,7 +101,7 @@ public class Controller implements Initializable
     final int base=2;
     final int packetWidth=85;
     int windowSizerMover=1;
-    int onFinishIndex;
+
     /**
      *
      * Killed Packets
@@ -115,12 +115,13 @@ public class Controller implements Initializable
     }
     public void start(ActionEvent event)
     {
-        init();
+        VarIntialization();
+        
+        GBNTasks();
     }
 
-    public void init()
+    private void VarIntialization()
     {
-        //Variable Intialization
         framesNumber=Math.pow(base,Integer.valueOf(numberOfBits.getText()));
         windowWidth =Integer.valueOf(windowSize.getText());
         sendPackets= new ArrayList<TranslateTransition>();
@@ -132,10 +133,16 @@ public class Controller implements Initializable
         windowSizeMove = new TranslateTransition();
         senderStartIndex=0;
         senderMaxIndex=windowWidth;
-
-        onFinishIndex=windowWidth-1;
         recervierStartIndex=0;
         reciverMaxIndex=windowWidth;
+
+    }
+
+    public void GBNTasks()
+    {
+        //Variable Intialization
+
+
 
         packets.getChildren().addAll(createSendBuffer((int) framesNumber));
         createWindowSize(packetWidth,windowWidth);
@@ -253,8 +260,7 @@ public class Controller implements Initializable
                         {
                             responseBuffer.getChildren().add(buttons.get(i));
                             recervierStartIndex++;
-                            onFinishIndex++;
-                            System.out.println(onFinishIndex);
+
                         }
                         reciverMaxIndex+=windowWidth;
                     }
