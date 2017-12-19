@@ -72,8 +72,6 @@ public class Controller implements Initializable
     Button [] sendBuffer;
     int senderStartIndex;
     int senderMaxIndex;
-    boolean flag=false;
-    int timeout;
 
     /**
      *
@@ -116,9 +114,10 @@ public class Controller implements Initializable
     public void start(ActionEvent event)
     {
         VarIntialization();
-        
+        CreateUI();
         GBNTasks();
     }
+
 
     private void VarIntialization()
     {
@@ -137,17 +136,18 @@ public class Controller implements Initializable
         reciverMaxIndex=windowWidth;
 
     }
-
-    public void GBNTasks()
+    private void CreateUI()
     {
-        //Variable Intialization
-
-
-
         packets.getChildren().addAll(createSendBuffer((int) framesNumber));
         createWindowSize(packetWidth,windowWidth);
         reciverHBox.getChildren().addAll(createReciverBuffer((int) framesNumber));
         transimitedPackets.getChildren().addAll(startSender((int) framesNumber));
+        responseBuffer.getChildren().addAll(responseAck((int) framesNumber));
+    }
+
+    public void GBNTasks()
+    {
+
         long de = 0;
         long peroid = 6 * 1000;
         senderTask = new TimerTask() {
@@ -255,10 +255,9 @@ public class Controller implements Initializable
                     public void run()
                     {
                         System.out.println("ACK Thread Start ");
-                        ArrayList<Button>buttons=responseAck(recervierStartIndex,reciverMaxIndex);
                         for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
                         {
-                            responseBuffer.getChildren().add(buttons.get(i));
+
                             recervierStartIndex++;
 
                         }
@@ -273,7 +272,7 @@ public class Controller implements Initializable
             long delay = 0;
             long intevalPeriod = 6 * 1000;
             timer.scheduleAtFixedRate(ackTask, delay,intevalPeriod);*/
-        flag=false;
+
 
 
 
@@ -371,11 +370,11 @@ public class Controller implements Initializable
         killedAcks.add(index);
 
     }
-    private ArrayList<Button> responseAck(int start,int max)
+    private ArrayList<Button> responseAck(int framesNumber)
     {
         double delay=1;
         Paint paint = Paint.valueOf("#329932");
-        for (int i=start;i<max;i++)
+        for (int i=0;i<framesNumber;i++)
         {
             final int x=i;
             acks.add(new Button("RR "+i)) ;
@@ -404,8 +403,7 @@ public class Controller implements Initializable
             ackMoving.get(i).setDelay(new Duration(delay*1000));
             delay+=0.25;
             ackMoving.get(i).play();
-            if (i==max-1)
-            {
+
                 ackMoving.get(i).setOnFinished(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event)
@@ -414,7 +412,7 @@ public class Controller implements Initializable
                         windowSizerMover += windowWidth;
                     }
                 });
-            }
+
         }
 
         return acks;
