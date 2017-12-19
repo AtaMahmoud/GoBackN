@@ -96,6 +96,7 @@ public class Controller
      *
      * */
     TranslateTransition windowSizeMove ;
+    TimerTask movingWindowSize;
     final int base=2;
     final int packetWidth=85;
     int windowSizerMover=1;
@@ -170,8 +171,6 @@ public class Controller
                                 if(killedPackets.size()==windowWidth)
                                 {
                                     System.out.println("inside if");
-                                    senderMaxIndex-=windowWidth;
-                                    senderStartIndex-=windowWidth;
                                     for (int j=senderStartIndex;j<senderMaxIndex;j++)
                                     {
                                         System.out.println("inside for");
@@ -260,9 +259,41 @@ public class Controller
                             @Override
                             public void handle(ActionEvent event)
                             {
-                                //windows SIze moving
-                                moveWindowSize(packetWidth, windowSizerMover);
-                                windowSizerMover += windowWidth;
+                                if (killedAcks.size()==windowWidth)
+                                {
+                                    senderStartIndex=recervierStartIndex;
+                                    senderMaxIndex=reciverMaxIndex;
+                                    senderTask.run();
+                                    for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
+                                    {
+                                        System.out.println("inside for of Sender");
+                                        acks.get(i).setTranslateY(0);
+                                        ackMoving.get(i).getNode().setVisible(true);
+                                    }
+                                }
+                                if (!killedAcks.contains(reciverMaxIndex-1))
+                                {
+                                    Paint paint = Paint.valueOf("#329932");
+                                    for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
+                                    {
+                                        System.out.println("Color Changing");
+                                        sentPackets.get(i).setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
+
+                                    }
+                                    movingWindowSize.run();
+                                    windowSizerMover += windowWidth;
+                                }
+                                else if (killedAcks.size()>0&&killedAcks.size()<windowWidth)
+                                {
+                                    //TODO:Kill ack Senario
+                                }
+                                else
+                                {
+
+                                    moveWindowSize(packetWidth, windowSizerMover);
+                                    windowSizerMover += windowWidth;
+                                }
+
                             }
                         });
 
@@ -272,7 +303,30 @@ public class Controller
 
             }
         };
-
+        movingWindowSize= new TimerTask() {
+            @Override
+            public void run() {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run()
+                    {
+                        //TODo : Invoke WIndowSize Method Here
+                        windowSizeMove.play();
+                        windowSizeMove.setOnFinished(new EventHandler<ActionEvent>() {
+                            @Override
+                            public void handle(ActionEvent event)
+                            {
+                                senderMaxIndex+=windowWidth;
+                                senderStartIndex+=windowWidth;
+                                reciverMaxIndex+=windowWidth;
+                                recervierStartIndex+=windowWidth;
+                                senderTask.run();
+                            }
+                        });
+                    }
+                });
+            }
+        };
            /* Timer timer = new Timer();
             long delay = 0;
             long intevalPeriod = 6 * 1000;
@@ -346,7 +400,6 @@ public class Controller
 
         return sentPackets;
     }
-
     private Button[] createReciverBuffer(int packetsNumber)
     {
 
@@ -362,7 +415,6 @@ public class Controller
 
         return reciveBuffer;
     }
-
     private void killPackets(Button btn,int index)
     {
         btn.setVisible(false);
@@ -419,7 +471,6 @@ public class Controller
         rectangle.setStroke(Color.RED);
 
     }
-
     private void moveWindowSize(int frameWidth,int numberOfFramesToMove)
     {
 
@@ -429,19 +480,8 @@ public class Controller
         windowSizeMove.setAutoReverse(true);
         windowSizeMove.setCycleCount(1);
         windowSizeMove.setNode(rectangle);
-        windowSizeMove.play();
 
-        windowSizeMove.setOnFinished(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event)
-            {
-                senderMaxIndex+=windowWidth;
-                senderStartIndex+=windowWidth;
-                reciverMaxIndex+=windowWidth;
-                recervierStartIndex+=windowWidth;
-                senderTask.run();
-            }
-        });
+
     }
 
 }
