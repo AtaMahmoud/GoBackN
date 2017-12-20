@@ -5,19 +5,17 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
-import java.net.URL;
 import java.util.*;
 
 
@@ -34,12 +32,6 @@ public class Controller
     int windowWidth ;
     @FXML
     private TextField timeOut;
-
-    @FXML
-    private Button startButton;
-
-    @FXML
-    private Button stopButton;
 
     @FXML
     private Rectangle rectangle;
@@ -102,19 +94,32 @@ public class Controller
     int windowSizerMover=1;
 
     /**
-     *
      * Killed Packets
-     *
      * */
     ArrayList<Integer> killedPackets=new ArrayList<Integer>();
+
+    /**
+     *
+     *Time Line Vars
+     *
+     */
+    @FXML
+    private Line senderLine;
+    @FXML
+    private Line reciverLine;
+    @FXML
+    private VBox timeLineContainer;
+    int startPacketLine;
+    int maxPacketLine;
+    int startAcktLine;
+    int maxAckLine;
+
     public void start(ActionEvent event)
     {
         VarIntialization();
         CreateUI();
         GBNTasks();
     }
-
-
     private void VarIntialization()
     {
         framesNumber=Math.pow(base,Integer.valueOf(numberOfBits.getText()));
@@ -139,8 +144,9 @@ public class Controller
         reciverHBox.getChildren().addAll(createReciverBuffer((int) framesNumber));
         transimitedPackets.getChildren().addAll(startSender((int) framesNumber));
         responseBuffer.getChildren().addAll(responseAck((int) framesNumber));
+        senderLine.setVisible(true);
+        reciverLine.setVisible(true);
     }
-
     public void GBNTasks()
     {
 
@@ -160,6 +166,7 @@ public class Controller
                         {
                             sendPackets.get(i).play();
                         }
+
                         sendPackets.get(senderMaxIndex-1).setOnFinished(new EventHandler<ActionEvent>()
                         {
 
@@ -218,6 +225,8 @@ public class Controller
                                 }
                                 else
                                 {
+                                    for (int i=senderStartIndex;i<senderMaxIndex;i++)
+                                    createPacketLine(i);
                                     ackTask.run();
                                 }
 
@@ -282,13 +291,12 @@ public class Controller
                                         System.out.println("Color Changing");
                                         sentPackets.get(i).setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
                                     }
-                                    windowSizerMover += windowWidth;
+                                    windowSizerMover += reciverMaxIndex;
                                     movingWindowSize.run();
 
                                 }
                                 else if (killedAcks.size()>0&&killedAcks.size()<windowWidth)
                                 {
-                                    //TODO:Kill ack Senario
                                     senderStartIndex=killedAcks.get(killedAcks.indexOf(Collections.min(killedAcks)));
                                     senderMaxIndex=senderStartIndex+windowWidth;
                                     for (int i=senderStartIndex;i<senderMaxIndex;i++)
@@ -302,9 +310,8 @@ public class Controller
                                 }
                                 else
                                 {
-
-                                    moveWindowSize(packetWidth, windowSizerMover);
-                                    windowSizerMover += windowWidth;
+                                    windowSizerMover += reciverMaxIndex;
+                                    movingWindowSize.run();
                                 }
 
                             }
@@ -324,6 +331,7 @@ public class Controller
                     public void run()
                     {
                         //TODo : Invoke WIndowSize Method Here
+                        moveWindowSize(packetWidth,windowSizerMover);
                         windowSizeMove.play();
                         windowSizeMove.setOnFinished(new EventHandler<ActionEvent>() {
                             @Override
@@ -345,21 +353,13 @@ public class Controller
             long intevalPeriod = 6 * 1000;
             timer.scheduleAtFixedRate(ackTask, delay,intevalPeriod);*/
 
-
-
-
-
     }
     public void stop(ActionEvent event)
     {
         System.exit(0);
     }
-
     /**
-     *
-     *
-     * Snder Methods
-     *
+     *Snder Methods
      * */
     private Button[] createSendBuffer(int packetsNumber)
     {
@@ -488,13 +488,34 @@ public class Controller
     {
 
         windowSizeMove.setDuration(Duration.seconds(3));
-        windowSizeMove.setToX(frameWidth*numberOfFramesToMove+5);
+        windowSizeMove.setToX((frameWidth*numberOfFramesToMove)+5);
         windowSizeMove.setToY(0);
         windowSizeMove.setAutoReverse(true);
         windowSizeMove.setCycleCount(1);
         windowSizeMove.setNode(rectangle);
 
 
+    }
+    /**
+     * Time Line Part
+     */
+    private void createPacketLine(int start)
+    {
+            Label packet=new Label();
+            packet.setPadding(new Insets(35,0,0,0));
+            packet.setTextFill(Color.BLACK);
+            packet.setStyle("-fx-font: 18 arial;");
+        packet.setText("------------------------------------------------------------------------->Packet"+start);
+            timeLineContainer.getChildren().add(packet);
+    }
+    private void createAckLine(int start,int max)
+    {
+        for (int i=start;i<max;i++)
+        {
+            Label packet=new Label();
+            packet.setText("Ack "+i+"<---------------------------------------------------------------------");
+            timeLineContainer.getChildren().add(packet);
+        }
     }
 
 }
