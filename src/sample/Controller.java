@@ -283,7 +283,7 @@ public class Controller
                                     killedAcks.clear();
                                     senderTask.run();
                                 }
-                               else if (!killedAcks.contains(reciverMaxIndex-1)&&killedAcks.size()<windowWidth)
+                               else if (!killedAcks.contains(reciverMaxIndex-1)&&killedAcks.size()<windowWidth&&killedAcks.size()!=0 )
                                 {
                                     Paint paint = Paint.valueOf("#329932");
                                     for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
@@ -310,6 +310,10 @@ public class Controller
                                 }
                                 else
                                 {
+                                    System.out.println("I'm Here before acks For Time Line");
+                                    for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
+                                         createAckLine(i);
+
                                     windowSizerMover += reciverMaxIndex;
                                     movingWindowSize.run();
                                 }
@@ -432,12 +436,14 @@ public class Controller
     {
         btn.setVisible(false);
         killedPackets.add(index);
+        killedPacketTimeLine(index);
 
     }
     private void killAcks(Button btn,int index)
     {
         btn.setVisible(false);
         killedAcks.add(index);
+        killedAckTimeLine(index);
 
     }
     private ArrayList<Button> responseAck(int framesNumber)
@@ -505,17 +511,36 @@ public class Controller
             packet.setPadding(new Insets(35,0,0,0));
             packet.setTextFill(Color.BLACK);
             packet.setStyle("-fx-font: 18 arial;");
-        packet.setText("------------------------------------------------------------------------->Packet"+start);
+            packet.setText("------------------------------------------------------------------------->Packet"+start);
             timeLineContainer.getChildren().add(packet);
     }
-    private void createAckLine(int start,int max)
+    private void createAckLine(int start)
     {
-        for (int i=start;i<max;i++)
-        {
-            Label packet=new Label();
-            packet.setText("Ack "+i+"<---------------------------------------------------------------------");
-            timeLineContainer.getChildren().add(packet);
-        }
-    }
 
+             Label ack=new Label();
+             ack.setPadding(new Insets(35,0,0,0));
+             ack.setText("Ack "+start+"<---------------------------------------------------------------------");
+             ack.setTextFill(Color.BLACK);
+             ack.setStyle("-fx-font: 18 arial;");
+             timeLineContainer.getChildren().add(ack);
+
+    }
+    private void killedPacketTimeLine(int start)
+    {
+        Label KilledPacket=new Label();
+        KilledPacket.setPadding(new Insets(35,0,0,0));
+        KilledPacket.setTextFill(Color.BLACK);
+        KilledPacket.setStyle("-fx-font: 18 arial;");
+        KilledPacket.setText("-------------------------------------------------------------------------X Packet"+start);
+        timeLineContainer.getChildren().add(KilledPacket);
+    }
+    private void killedAckTimeLine(int start)
+    {
+        Label KilledAck=new Label();
+        KilledAck.setPadding(new Insets(35,0,0,0));
+        KilledAck.setText("Ack "+start+" X---------------------------------------------------------------------");
+        KilledAck.setTextFill(Color.BLACK);
+        KilledAck.setStyle("-fx-font: 18 arial;");
+        timeLineContainer.getChildren().add(KilledAck);
+    }
 }
