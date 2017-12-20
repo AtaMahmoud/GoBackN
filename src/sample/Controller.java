@@ -263,29 +263,42 @@ public class Controller
                                 {
                                     senderStartIndex=recervierStartIndex;
                                     senderMaxIndex=reciverMaxIndex;
-                                    senderTask.run();
                                     for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
                                     {
-                                        System.out.println("inside for of Sender");
+                                        System.out.println("inside for of when Killed Ack == window width");
                                         acks.get(i).setTranslateY(0);
                                         ackMoving.get(i).getNode().setVisible(true);
+                                        sentPackets.get(i).setTranslateY(0);
+                                        sentPackets.get(i).setVisible(true);
                                     }
+                                    killedAcks.clear();
+                                    senderTask.run();
                                 }
-                                if (!killedAcks.contains(reciverMaxIndex-1))
+                               else if (!killedAcks.contains(reciverMaxIndex-1)&&killedAcks.size()<windowWidth)
                                 {
                                     Paint paint = Paint.valueOf("#329932");
                                     for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
                                     {
                                         System.out.println("Color Changing");
                                         sentPackets.get(i).setBackground(new Background(new BackgroundFill(paint, CornerRadii.EMPTY, Insets.EMPTY)));
-
                                     }
-                                    movingWindowSize.run();
                                     windowSizerMover += windowWidth;
+                                    movingWindowSize.run();
+
                                 }
                                 else if (killedAcks.size()>0&&killedAcks.size()<windowWidth)
                                 {
                                     //TODO:Kill ack Senario
+                                    senderStartIndex=killedAcks.get(killedAcks.indexOf(Collections.min(killedAcks)));
+                                    senderMaxIndex=senderStartIndex+windowWidth;
+                                    for (int i=senderStartIndex;i<senderMaxIndex;i++)
+                                    {
+                                        System.out.println("Inside kill ack for");
+                                        sentPackets.get(i).setTranslateY(0);
+                                        sendPackets.get(i).getNode().setVisible(true);
+                                    }
+                                    killedAcks.clear();
+                                    senderTask.run();
                                 }
                                 else
                                 {
@@ -339,7 +352,7 @@ public class Controller
     }
     public void stop(ActionEvent event)
     {
-
+        System.exit(0);
     }
 
     /**
