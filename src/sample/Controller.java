@@ -155,6 +155,7 @@ public class Controller
                     @Override
                     public void run()
                     {
+                        killedPackets.clear();
                         System.out.println("Thread Start");
 
                         for (int i=senderStartIndex;i<senderMaxIndex;i++)
@@ -168,38 +169,27 @@ public class Controller
                             @Override
                             public void handle(ActionEvent event)
                             {
-                                System.out.println("Inside On Finish");
-
                                 if(killedPackets.size()==windowWidth)
                                 {
                                     System.out.println("inside if");
                                     for (int j=senderStartIndex;j<senderMaxIndex;j++)
                                     {
-                                        System.out.println("inside for");
                                         sentPackets.get(j).setTranslateY(0);
                                         sendPackets.get(j).getNode().setVisible(true);
                                     }
-                                    killedPackets.clear();
                                     senderTask.run();
-
-
-
                                 }
                                 else if(killedPackets.size()>0&&killedPackets.size()<windowWidth)
                                 {
-
-                                    System.out.println("inside  else if");
                                     if (killedPackets.get(killedPackets.indexOf(Collections.min(killedPackets)))==0)
                                     {
                                         senderStartIndex=killedPackets.get(killedPackets.indexOf(Collections.min(killedPackets)));
                                         senderMaxIndex=windowWidth;
                                         for (int j=senderStartIndex;j<senderMaxIndex;j++)
                                         {
-                                            System.out.println("inside for");
                                             sentPackets.get(j).setTranslateY(0);
                                             sendPackets.get(j).getNode().setVisible(true);
                                         }
-                                        killedPackets.clear();
                                         senderTask.run();
                                     }
                                     else
@@ -208,11 +198,9 @@ public class Controller
                                         senderMaxIndex = senderStartIndex+windowWidth;
                                         for (int j=senderStartIndex;j<senderMaxIndex;j++)
                                         {
-                                            System.out.println("inside for");
                                             sentPackets.get(j).setTranslateY(0);
                                             sendPackets.get(j).getNode().setVisible(true);
                                         }
-                                        killedPackets.clear();
                                         senderTask.run();
                                     }
 
@@ -224,12 +212,9 @@ public class Controller
                                     ackTask.run();
                                 }
 
-
                             }
 
-
                         });
-
 
                     }
                 });
@@ -287,13 +272,14 @@ public class Controller
                                 {
                                     senderStartIndex=killedAcks.get(killedAcks.indexOf(Collections.min(killedAcks)));
                                     senderMaxIndex=senderStartIndex+windowWidth;
+                                    reciverMaxIndex=senderStartIndex;
                                     for (int i=senderStartIndex;i<senderMaxIndex;i++)
                                     {
                                         System.out.println("Inside kill ack for");
                                         sentPackets.get(i).setTranslateY(0);
                                         sendPackets.get(i).getNode().setVisible(true);
                                     }
-                                    senderTask.run();
+                                    ackTask.run();
                                 }
                                 else
                                 {
@@ -301,7 +287,7 @@ public class Controller
                                     for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
                                          createAckLine(i);
 
-                                    windowSizerMover += reciverMaxIndex;
+                                    windowSizerMover += windowSizerMover+1;
                                     movingWindowSize.run();
                                 }
 
@@ -321,17 +307,17 @@ public class Controller
                     @Override
                     public void run()
                     {
-                        //TODo : Invoke WIndowSize Method Here
                         moveWindowSize(packetWidth,windowSizerMover);
                         windowSizeMove.play();
                         windowSizeMove.setOnFinished(new EventHandler<ActionEvent>() {
                             @Override
                             public void handle(ActionEvent event)
                             {
+
                                 senderMaxIndex+=windowWidth;
                                 senderStartIndex+=windowWidth;
-                                reciverMaxIndex+=windowWidth;
-                                recervierStartIndex+=windowWidth;
+                                reciverMaxIndex=senderMaxIndex;
+                                recervierStartIndex=senderStartIndex;
                                 senderTask.run();
                             }
                         });
@@ -339,7 +325,7 @@ public class Controller
                 });
             }
         };
-          
+
     }
     public void stop(ActionEvent event)
     {
@@ -477,7 +463,7 @@ public class Controller
     {
 
         windowSizeMove.setDuration(Duration.seconds(3));
-        windowSizeMove.setToX((frameWidth*numberOfFramesToMove)+5);
+        windowSizeMove.setToX((frameWidth*numberOfFramesToMove));
         windowSizeMove.setToY(0);
         windowSizeMove.setAutoReverse(true);
         windowSizeMove.setCycleCount(1);
