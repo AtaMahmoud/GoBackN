@@ -109,10 +109,7 @@ public class Controller
     private Line reciverLine;
     @FXML
     private VBox timeLineContainer;
-    int startPacketLine;
-    int maxPacketLine;
-    int startAcktLine;
-    int maxAckLine;
+
 
     public void start(ActionEvent event)
     {
@@ -150,8 +147,6 @@ public class Controller
     public void GBNTasks()
     {
 
-        long de = 0;
-        long peroid = 6 * 1000;
         senderTask = new TimerTask() {
             @Override
             public void run()
@@ -194,7 +189,6 @@ public class Controller
                                 {
 
                                     System.out.println("inside  else if");
-                                    //ackTask.run();
                                     if (killedPackets.get(killedPackets.indexOf(Collections.min(killedPackets)))==0)
                                     {
                                         senderStartIndex=killedPackets.get(killedPackets.indexOf(Collections.min(killedPackets)));
@@ -236,19 +230,13 @@ public class Controller
 
                         });
 
-                       /* senderMaxIndex+=windowWidth;
-                        senderStartIndex+=windowWidth;*/
+
                     }
                 });
             }
         };
 
-        /*Timer anotherTimer = new Timer();
-        anotherTimer.scheduleAtFixedRate(senderTask, de,peroid);*/
         senderTask.run();
-
-
-
 
         ackTask = new TimerTask() {
             @Override
@@ -259,6 +247,7 @@ public class Controller
                     public void run()
                     {
                         System.out.println("ACK Thread Start ");
+                        killedAcks.clear();
                         for (int i=recervierStartIndex;i<reciverMaxIndex;i++)
                         {
                             ackMoving.get(i).play();
@@ -280,7 +269,6 @@ public class Controller
                                         sentPackets.get(i).setTranslateY(0);
                                         sentPackets.get(i).setVisible(true);
                                     }
-                                    killedAcks.clear();
                                     senderTask.run();
                                 }
                                else if (!killedAcks.contains(reciverMaxIndex-1)&&killedAcks.size()<windowWidth&&killedAcks.size()!=0 )
@@ -305,7 +293,6 @@ public class Controller
                                         sentPackets.get(i).setTranslateY(0);
                                         sendPackets.get(i).getNode().setVisible(true);
                                     }
-                                    killedAcks.clear();
                                     senderTask.run();
                                 }
                                 else
@@ -352,11 +339,7 @@ public class Controller
                 });
             }
         };
-           /* Timer timer = new Timer();
-            long delay = 0;
-            long intevalPeriod = 6 * 1000;
-            timer.scheduleAtFixedRate(ackTask, delay,intevalPeriod);*/
-
+          
     }
     public void stop(ActionEvent event)
     {
